@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  usuario:string;
+  constructor(public activeRoute:ActivatedRoute, public router:Router) {
+    this.activeRoute.queryParams.subscribe(parametros =>{
+      this.usuario = parametros.userName;
+    }) 
+  }
 
-  constructor() {}
+  logOut() {
+    localStorage.removeItem('infoUserFacebook');
+    this.router.navigate(['/'])
+  }
 
 }
