@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { UsuarioService } from './servicios/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(public router:Router) {
+  constructor(public router:Router, public userService: UsuarioService) {
     let infoUser = localStorage.getItem('infoUserFacebook')
     console.log('string',infoUser)
     let infoUserJson = JSON.parse(infoUser)//Convierte el string de localstorage en un JSON
@@ -18,6 +19,7 @@ export class AppComponent {
           userName:infoUserJson.userName
         }
       }
+      userService.userName = infoUserJson.userName
       router.navigate(['/tabs/tab2'])
     }
   }
