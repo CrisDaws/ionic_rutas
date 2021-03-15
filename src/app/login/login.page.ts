@@ -31,13 +31,31 @@ export class LoginPage implements OnInit {
       let infoUser = {
         userName: this.usuario,
         correo: 'user@gmail.com',
+        tipoUser: 'user',
+      };
+      localStorage.setItem('infoUserFacebook', JSON.stringify(infoUser)); //stringify convierte un JSON en string
+      this.userService.userName = infoUser.userName;
+      this.userService.correo = infoUser.correo;
+      this.userService.tipoUser = infoUser.tipoUser;
+      this.router.navigate(['/tabs/usuario'], navExtras);
+    } else if (this.usuario == 'admin' && this.password == '1234') {
+      //Las credenciales son correctas
+      let navExtras: NavigationExtras = {
+        queryParams: {
+          userName: this.usuario,
+        },
+      };
+
+      let infoUser = {
+        userName: this.usuario,
+        correo: 'admin@gmail.com',
         tipoUser: 'admin',
       };
       localStorage.setItem('infoUserFacebook', JSON.stringify(infoUser)); //stringify convierte un JSON en string
       this.userService.userName = infoUser.userName;
       this.userService.correo = infoUser.correo;
       this.userService.tipoUser = infoUser.tipoUser;
-      this.router.navigate(['/tabs/tab2'], navExtras);
+      this.router.navigate(['/tabs/admin'], navExtras);
     } else {
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',

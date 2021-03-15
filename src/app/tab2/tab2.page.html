@@ -12,8 +12,12 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
   <h1>Bienvenido {{userService.userName}}!</h1>
   <ion-button (click)="logOut()">CERRAR SESION</ion-button>
+  <ion-button (click)="librosService.obtenerLibros()">Obtener Libros</ion-button>
+  <div *ngFor="let libro of librosService.libros">
+    <p>Año: {{libro.anio}}</p>
+    <p>Autor: {{libro.autor}}</p>
+    <h4>Titulo: {{libro.titulo}}</h4>
+  </div>
 </ion-content>
